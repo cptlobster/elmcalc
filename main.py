@@ -1,5 +1,4 @@
 # import necessary classes
-from calculations import CalcEngine
 import efl.elementary as elm
 from efl.elementary.window import StandardWindow, DialogWindow
 from efl.elementary.label import Label
@@ -8,7 +7,6 @@ from efl.elementary.table import Table
 from efl.elementary.button import Button
 from efl.elementary.segment_control import SegmentControl
 from stack import Stack, Memory
-from calculations import CalcEngine
 from buttons import ButtonArrays
 
 from efl.evas import EVAS_HINT_EXPAND, EVAS_HINT_FILL
@@ -76,7 +74,6 @@ class MainWindow(StandardWindow):
         self.box.pack_end(self.entry)
         self.stack = Stack()
         self.memory = Memory()
-        self.ce = CalcEngine()
 
         # create calculator buttons
         btns = ButtonArrays()

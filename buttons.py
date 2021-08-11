@@ -1,5 +1,4 @@
 from efl.elementary.button import Button
-from calculations import CalcEngine as ce
 
 class ButtonArrays():
     def standard(self, ctx):
