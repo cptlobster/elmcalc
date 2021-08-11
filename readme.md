@@ -10,6 +10,7 @@ In it's current iteration this is somewhat of a quick-and-dirty script. I intend
    - Respect order of operations
    - Further objectify code
    - Move some code to separate files
+   - Comply with [Python standards](https://bodhilinux.boards.net/thread/100/python3-conversion-help-wanted)
  - Add scientific display mode
    - Add trig functions
    - Add log/exp functions
