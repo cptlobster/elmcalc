@@ -5,3 +5,5 @@ In it's current iteration this is somewhat of a quick-and-dirty script. I intend
 
 # To Do
 Tasks are now located in [this Project board](https://github.com/Firestorm325/elmcalc/projects/3).
+
+Current bugs that need to be fixed are included in [Issues](https://github.com/Firestorm325/elmcalc/issues) or [this Project board](https://github.com/Firestorm325/elmcalc/projects/4).
