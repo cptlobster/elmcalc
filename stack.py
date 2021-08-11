@@ -1,31 +1,33 @@
 import numpy as np
 
+
 class Stack():
     def __init__(self):
         # create stack
         self.values = []
         self.executed = False
         self.expressions = 0
-    
-    def get_stack(self, stack = None):
+        self.radians = True
+
+    def get_stack(self, stack=None):
         # get stack as a string
         stackinput = ""
         if stack == None:
             stack = self.values
         for i in stack:
             stackinput += str(i["value"])
-        
+
         if stackinput == "":
             stackinput = "0"
-        
+
         return stackinput
 
     def get_end_raw(self):
         # get end of the stack as a raw stack value
         entryinputstack = [""]
         if self.values == []:
-            entryinput = {"value":"0","type":"number"}
-            
+            entryinput = {"value": "0", "type": "number"}
+
         else:
             for i in self.values:
                 if i["type"] == "number" or i["type"] == "point":
@@ -33,10 +35,10 @@ class Stack():
                 else:
                     entryinputstack.append("")
 
-            entryinput = {"value":entryinputstack[-1],"type":"number"}
+            entryinput = {"value": entryinputstack[-1], "type": "number"}
             if entryinput["value"] == "":
                 entryinput = self.values[-1]
-        
+
         return entryinput
 
     def get_end(self):
@@ -48,7 +50,7 @@ class Stack():
             vs = value["value"]
 
         return vs
-        
+
     def push(self, value):
         # push a value to the stack
         # determine value type and return dict
@@ -76,7 +78,7 @@ class Stack():
                 self.values[-1]["value"] *= -1
             value["type"] = "clear"
 
-        elif value["value"] == "C":
+        elif value["value"] == "CLEAR":
             # Clear all
             self.reset()
             value["type"] = "clear"
@@ -96,25 +98,26 @@ class Stack():
             if len(self.values) > 0:
                 if self.values[-1]["type"] != "number" or self.values[-1]["value"] < 10:
                     self.values.pop()
-                    if self.values[-1]["type"] == "operation":
+                    if len(self.values) > 0 and self.values[-1]["type"] == "operation":
                         self.expressions -= 1
                 else:
-                    self.values[-1]["value"] = int(np.floor(self.values[-1]["value"] / 10))
+                    self.values[-1]["value"] = int(
+                        np.floor(self.values[-1]["value"] / 10))
             value["type"] = "clear"
 
         elif value["value"] == "=":
             # Execute
             value["type"] = "execute"
             self.executed = True
-        
+
         if self.executed and value["type"] != "execute":
             self.executed = False
-            
+
         # add value to stack based on type
         if value["type"] != "clear":
             if len(self.values) != 0:
                 # do not allow multiple decimal points in single number
-                if {"value":".","type":"point"} in self.values[-3:] and value["type"] == "point":
+                if {"value": ".", "type": "point"} in self.values[-3:] and value["type"] == "point":
                     pass
                 # do not allow multiple simple operations next to each other
                 elif self.values[-1] != "operation" or value["type"] != "operation":
@@ -124,15 +127,16 @@ class Stack():
                             self.expressions += 1
                         self.values.append(value)
                     else:
-                        self.values[-1]["value"] = self.values[-1]["value"] * 10 + value["value"]
+                        self.values[-1]["value"] = self.values[-1]["value"] * \
+                            10 + value["value"]
 
             elif value["type"] == "number" or value["type"] == "point":
                 if value["value"] != 0:
                     self.values.append(value)
-        
+
         return value
 
-    def calculate(self, stack = None):
+    def calculate(self, stack=None):
         # execute all calculations currently on the stack
         evalstring = ""
         if stack == None:
@@ -144,22 +148,23 @@ class Stack():
                 break
 
         result = eval(evalstring)
-        return {"value":result,"type":"number"}
+        return {"value": result, "type": "number"}
 
     def reset(self):
         # reset stack
         self.values = []
         self.expressions = 0
 
+
 class Memory():
     def __init__(self):
         self.history = []
         self.vars = {}
-    
+
     def create_var(self, name, value):
         var = {name: value}
         self.vars = {**self.vars, **var}
-    
+
     def get_var(self, name):
         return self.vars[name]
 
@@ -172,7 +177,7 @@ class Memory():
     def push_stack(self, value, result):
         value.append(result)
         self.history.append(value)
-    
+
     def get_stack(self, index):
         return self.history[index]
 
@@ -182,6 +187,7 @@ class Memory():
     def clear_memory(self):
         self.clear_history()
         self.clear_vars()
+
 
 if __name__ == "__main__":
     print("You seem lost, friend.\nPerhaps you should try running main.py instead?")
