@@ -13,6 +13,6 @@ For Bodhi users, you can install this simply by using:
 ```
 
 # To Do
-Tasks are now located in [this Project board](https://github.com/Firestorm325/elmcalc/projects/3).
+Tasks are now located in [this Project board](https://github.com/cptlobster/elmcalc/projects/3).
 
-Current bugs that need to be fixed are included in [Issues](https://github.com/Firestorm325/elmcalc/issues) or [this Project board](https://github.com/Firestorm325/elmcalc/projects/4).
+Current bugs that need to be fixed are included in [Issues](https://github.com/cptlobster/elmcalc/issues) or [this Project board](https://github.com/cptlobster/selmcalc/projects/4).

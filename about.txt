@@ -1,6 +1,6 @@
 <b>ELMCalc</b><ps>
 Developed using Python and EFL by Dustin Thomas<ps>
-https://github.com/Firestorm325/elmcalc<ps>
+https://github.com/cptlobster/elmcalc<ps>
 If you enjoy using this program, please feel free to contribute!<ps>
 <ps>
 <b>Special Thanks</b><ps>
